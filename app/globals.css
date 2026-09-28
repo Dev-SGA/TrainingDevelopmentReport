@@ -1,0 +1,1657 @@
+:root {
+  /* Institutional palette — SGA brand manual (2023), p. 08 */
+  --sga-navy: #072334;
+  --sga-blue: #297cc1;
+  --sga-blue-deep: #044f80;
+  --sga-white: #ffffff;
+
+  /* IDP grade scale: report semantics, with Above Level on the brand deep blue */
+  --sga-grade-below: #a1343c;
+  --sga-grade-average: #ad5129;
+  --sga-grade-good: #05712d;
+  --sga-grade-above: var(--sga-blue-deep);
+
+  /* Surfaces are mixed from the institutional colors only */
+  --bg: var(--sga-navy);
+  --bg-deep: color-mix(in srgb, var(--sga-navy) 72%, #000000);
+  --surface: color-mix(in srgb, var(--sga-blue-deep) 22%, transparent);
+  --surface-solid: color-mix(in srgb, var(--sga-navy) 80%, var(--sga-blue-deep));
+  --surface-soft: color-mix(in srgb, var(--sga-blue) 14%, transparent);
+  --surface-sunken: color-mix(in srgb, var(--sga-navy) 62%, #000000);
+  --line: color-mix(in srgb, var(--sga-white) 12%, transparent);
+  --line-strong: color-mix(in srgb, var(--sga-blue) 45%, transparent);
+  --text: var(--sga-white);
+  --text-muted: color-mix(in srgb, var(--sga-white) 68%, transparent);
+  --accent: var(--sga-blue);
+  --accent-deep: var(--sga-blue-deep);
+
+  /* Typography — manual p. 11: Source Sans 3 for graphics, Trebuchet MS for
+     documents, Good Times reserved for the logo and the slogan. */
+  --font-ui: "Source Sans 3", "Trebuchet MS", sans-serif;
+  --font-slogan: "Good Times", "Source Sans 3", sans-serif;
+
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 480px at 0% 0%, color-mix(in srgb, var(--sga-blue) 20%, transparent), transparent 55%),
+    radial-gradient(760px 420px at 100% 0%, color-mix(in srgb, var(--sga-blue-deep) 38%, transparent), transparent 58%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Thin institutional rule anchoring the page to the brand palette. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 10;
+  background: linear-gradient(90deg, var(--sga-blue-deep), var(--sga-blue) 55%, var(--sga-blue-deep));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Shell ---------- */
+
+.shell {
+  width: min(1360px, 100%);
+  margin: 0 auto;
+  padding: 34px 24px 56px 28px;
+}
+
+/* ---------- Header ---------- */
+
+.report-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.report-header__intro {
+  text-align: right;
+}
+
+.report-header__eyebrow {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.report-header__title {
+  margin: 0;
+  font-size: clamp(20px, 3.2vw, 30px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--sga-white);
+}
+
+.sga-brand {
+  display: flex;
+  align-items: center;
+}
+
+.sga-logo {
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+
+.sga-logo--horizontal.sga-logo--xs {
+  height: 24px;
+}
+
+.sga-logo--horizontal.sga-logo--sm {
+  height: 32px;
+}
+
+.sga-logo--horizontal.sga-logo--md {
+  height: 40px;
+}
+
+.sga-logo--horizontal.sga-logo--lg {
+  height: 48px;
+}
+
+.sga-logo--horizontal.sga-logo--xl {
+  height: clamp(52px, 6vw, 64px);
+}
+
+.sga-logo--horizontal.sga-logo--hero {
+  height: clamp(96px, 14vw, 148px);
+  max-width: min(520px, 86vw);
+}
+
+.sga-logo--vertical.sga-logo--sidebar {
+  height: clamp(88px, 12vw, 112px);
+  width: auto;
+}
+
+.sga-logo--vertical.sga-logo--float {
+  height: clamp(120px, 14vh, 168px);
+  width: auto;
+  opacity: 0.92;
+}
+
+.sga-logo--vertical.sga-logo--corner {
+  height: clamp(76px, 11vh, 104px);
+  width: auto;
+}
+
+.brand-corner {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  align-items: stretch;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--sga-navy) 94%, transparent);
+  border-top-right-radius: var(--radius-sm);
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35));
+}
+
+.brand-corner__stripe {
+  flex: 0 0 6px;
+  align-self: stretch;
+  background: var(--sga-white);
+}
+
+/* Keeps the stripe outside the logo safety area (manual p. 09: 2x clearance). */
+.brand-corner .sga-logo {
+  padding: 14px 20px 16px 18px;
+}
+
+.sga-logo--symbol.sga-logo--md {
+  height: 40px;
+  width: 40px;
+}
+
+.sga-logo--symbol.sga-logo--lg {
+  height: 52px;
+  width: 52px;
+}
+
+/* ---------- Two-column layout ---------- */
+
+.report-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.report-stack {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+/* ---------- Athlete column ---------- */
+
+.athlete-column {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: linear-gradient(
+    180deg,
+    var(--surface-solid) 0%,
+    color-mix(in srgb, var(--sga-navy) 95%, transparent) 100%
+  );
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.athlete-photo-block {
+  border-bottom: 1px solid var(--line);
+}
+
+.athlete-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.athlete-photo--pending {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.athlete-photo__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.athlete-photo__badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sga-navy) 88%, transparent);
+  border: 1px solid var(--line-strong);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.athlete-photo__toolbar {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px 14px;
+  background: color-mix(in srgb, var(--sga-navy) 40%, transparent);
+}
+
+.athlete-photo__toolbar-row {
+  display: grid;
+  gap: 8px;
+}
+
+.athlete-photo__error {
+  margin: 0;
+  font-size: 11px;
+  color: var(--sga-grade-below);
+}
+
+.athlete-photo__hint {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.athlete-details__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.athlete-form {
+  display: grid;
+  gap: 10px;
+}
+
+.athlete-form__field {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.athlete-form__field input {
+  padding: 9px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.athlete-form__field input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.athlete-photo__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--sga-white) 35%, transparent);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--sga-blue) 26%, transparent),
+    color-mix(in srgb, var(--sga-navy) 82%, transparent)
+  );
+}
+
+.athlete-photo__placeholder--generic {
+  color: color-mix(in srgb, var(--sga-white) 48%, transparent);
+}
+
+.athlete-photo__icon {
+  width: min(44%, 132px);
+  height: auto;
+}
+
+.athlete-details {
+  padding: 20px 20px 22px;
+}
+
+.athlete-details__label {
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.athlete-details__name {
+  margin: 0 0 18px;
+  font-size: clamp(22px, 2.8vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.athlete-details__meta {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.athlete-details__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.athlete-details__row:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.athlete-details__row dt {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.athlete-details__row dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.athlete-details__row dd.is-placeholder {
+  color: var(--text-muted);
+  font-weight: 550;
+}
+
+/* ---------- Panels ---------- */
+
+.panel {
+  padding: 22px 24px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--sga-navy) 58%, transparent);
+  box-shadow: var(--shadow);
+}
+
+.panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.panel__hint {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.panel__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.panel__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
+.panel__head--compact {
+  margin-bottom: 16px;
+}
+
+/* ---------- Grade legend tooltip ---------- */
+
+.legend-tip {
+  position: relative;
+  display: inline-flex;
+}
+
+.legend-tip__trigger {
+  padding: 4px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface-sunken);
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: help;
+}
+
+.legend-tip__trigger:hover,
+.legend-tip__trigger:focus-visible {
+  border-color: var(--accent);
+  color: var(--text);
+  outline: none;
+}
+
+.legend-tip__pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  min-width: 200px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--sga-navy) 97%, transparent);
+  box-shadow: var(--shadow);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.legend-tip__pop.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.legend-tip__title {
+  margin: 0 0 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.legend--stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* ---------- Indicators ---------- */
+
+.indicator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.indicator-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.indicator-grid--4.indicator-grid--pairs {
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+}
+
+.indicator-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.indicator-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 92px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid color-mix(in srgb, var(--indicator-color, var(--sga-blue)) 70%, var(--sga-white));
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+}
+
+.indicator__label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.indicator__label-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.indicator__label-input::placeholder {
+  color: color-mix(in srgb, var(--sga-white) 45%, transparent);
+}
+
+.indicator__label-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.indicator__grade-row {
+  width: 100%;
+}
+
+.indicator__select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.indicator__select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.print-only {
+  display: none;
+}
+
+.report-actions__note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.report-actions__note--error {
+  color: var(--sga-grade-below);
+}
+
+.btn--compact {
+  padding: 6px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.psi-row--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.psi-row__main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.psi-row__link-input {
+  width: calc(100% - 36px);
+  margin-left: 36px;
+  padding: 9px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.psi-row__link-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.psi-row--read {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.psi-row__link-missing {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Chips keep the grade hue but are lifted toward white so they stay legible
+   on the navy background. */
+.badge__label {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--badge-color) 28%, transparent);
+  border: 1px solid color-mix(in srgb, var(--badge-color) 65%, var(--sga-white));
+  color: color-mix(in srgb, var(--badge-color) 38%, var(--sga-white));
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge--empty {
+  padding: 3px 9px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.legend__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.empty-note {
+  margin: 0;
+  padding: 16px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ---------- Improvements ---------- */
+
+.improve-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.improve-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+}
+
+.improve-row--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.improve-row__main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.improve-row--read {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.improve-row__link-input {
+  width: calc(100% - 38px);
+  margin-left: 38px;
+  padding: 9px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.improve-row__link-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.improve-row__link-missing {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.improve-row__index {
+  display: grid;
+  place-items: center;
+  flex: 0 0 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--sga-blue) 22%, transparent);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.improve-row__text {
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.improve-row--empty .improve-row__text {
+  color: var(--text-muted);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.improve-row__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.improve-row__input::placeholder,
+.psi-row__input::placeholder {
+  color: color-mix(in srgb, var(--sga-white) 45%, transparent);
+}
+
+.improve-row__input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.improve-editor {
+  display: grid;
+  gap: 12px;
+}
+
+.improve-editor__note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ---------- Player-specific indicators ---------- */
+
+.psi-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.psi-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+}
+
+.psi-row__index {
+  display: grid;
+  place-items: center;
+  flex: 0 0 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--sga-blue) 22%, transparent);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.psi-row__label {
+  flex: 1 1 auto;
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.psi-row__grade {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--sga-white) 80%, transparent);
+}
+
+.psi-row--empty .psi-row__label {
+  color: var(--text-muted);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.psi-row__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.psi-row__select {
+  flex: 0 0 min(160px, 38%);
+  padding: 9px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.psi-row__input:focus-visible,
+.psi-row__select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.psi-editor {
+  display: grid;
+  gap: 12px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--sga-white);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--sga-blue) 88%, var(--sga-white));
+}
+
+.btn--ghost {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--surface-soft);
+}
+
+.btn--dashed {
+  width: 100%;
+  border: 1px dashed var(--line-strong);
+  color: var(--text-muted);
+}
+
+.btn--dashed:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.btn--icon {
+  flex: 0 0 32px;
+  height: 32px;
+  padding: 0;
+  border-color: var(--line-strong);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-muted);
+}
+
+.btn--icon:hover:not(:disabled) {
+  border-color: var(--sga-grade-below);
+  color: var(--sga-grade-below);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  display: grid;
+  gap: 8px;
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+/* Good Times is reserved for the logo and slogan (manual p. 11). */
+.footer__slogan {
+  margin: 0;
+  font-family: var(--font-slogan);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.footer__rights {
+  margin: 0;
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+/* ---------- Responsive ---------- */
+
+/* Reserves a left gutter so the fixed logo never overlaps content, shrinking
+   once the centered shell already leaves enough outer margin. */
+@media (min-width: 901px) {
+  .shell {
+    padding-left: max(28px, calc(140px - max(0px, (100vw - 1360px) / 2)));
+    padding-bottom: 96px;
+  }
+}
+
+@media (max-width: 900px) {
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .athlete-column {
+    position: static;
+  }
+
+  .report-header__intro {
+    text-align: left;
+  }
+
+  /* Docked brand bar on narrow screens: content scrolls under an opaque bar
+     instead of sitting behind the logo. */
+  .brand-corner {
+    right: 0;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    border-top-right-radius: 0;
+    background: color-mix(in srgb, var(--sga-navy) 96%, transparent);
+  }
+
+  .sga-logo--vertical.sga-logo--corner {
+    height: 54px;
+  }
+
+  .brand-corner .sga-logo {
+    padding: 10px 16px 10px 14px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .indicator-grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .indicator-grid--4.indicator-grid--pairs {
+    grid-template-rows: unset;
+    grid-auto-flow: row;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 22px 14px 96px;
+  }
+
+  .panel,
+  .athlete-details {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .indicator-grid,
+  .indicator-grid--4,
+  .indicator-grid--3,
+  .indicator-grid--2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  body {
+    background: var(--sga-white);
+    color: var(--sga-navy);
+  }
+
+  body::before {
+    display: none;
+  }
+
+  .no-print,
+  .legend-tip,
+  .report-actions,
+  .athlete-photo__toolbar {
+    display: none !important;
+  }
+
+  .print-only,
+  .indicator__print-grade {
+    display: block !important;
+  }
+
+  .indicator__print-grade {
+    display: inline-flex !important;
+  }
+
+  .panel,
+  .athlete-column {
+    box-shadow: none;
+    border-color: color-mix(in srgb, var(--sga-blue) 35%, var(--sga-white));
+    background: var(--sga-white);
+    break-inside: avoid;
+  }
+
+  .panel__actions {
+    display: none;
+  }
+
+  .brand-corner {
+    display: none;
+  }
+
+  .athlete-column {
+    position: static;
+  }
+
+  .report-grid {
+    grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  }
+
+  .indicator-grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .indicator-grid--4.indicator-grid--pairs {
+    grid-template-rows: repeat(2, auto);
+    grid-auto-flow: column;
+  }
+
+  .badge__label {
+    color: var(--sga-navy);
+    border-color: currentColor;
+  }
+}
+
+/* ---------- Off-screen PDF layout (html2canvas) ---------- */
+
+.pdf-sheet-host {
+  position: fixed;
+  left: -12000px;
+  top: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* The sheet is rasterised by html2canvas, so every value here stays literal
+   (no custom properties, no color-mix) and no paint-only effects are used. */
+.pdf-sheet {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 794px;
+  min-height: 1123px;
+  background: #ffffff;
+  color: #0d2c3f;
+  font-family: "Source Sans 3", "Trebuchet MS", sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.pdf-sheet *,
+.pdf-sheet *::before,
+.pdf-sheet *::after {
+  box-sizing: border-box;
+}
+
+/* ---- header band ---- */
+
+.pdf-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 24px 46px 26px;
+  background: #072334;
+}
+
+.pdf-rule {
+  flex: 0 0 auto;
+  height: 3px;
+  background: #297cc1;
+}
+
+.pdf-head__brand {
+  flex: 0 0 auto;
+}
+
+.pdf-head__logo {
+  display: block;
+  width: 152px;
+  height: 62px;
+}
+
+.pdf-head__titles {
+  flex: 1 1 auto;
+  text-align: right;
+}
+
+.pdf-head__eyebrow {
+  margin: 0 0 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #6fa8d8;
+}
+
+.pdf-head__title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.pdf-head__issued {
+  margin: 8px 0 0;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #93aec3;
+}
+
+/* ---- body ---- */
+
+.pdf-body {
+  flex: 1 1 auto;
+  padding: 30px 46px 34px;
+}
+
+.pdf-profile {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  padding-bottom: 28px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #e4ecf3;
+}
+
+.pdf-profile__photo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 132px;
+  height: 168px;
+  padding-bottom: 12px;
+  border: 1px solid #dde7ef;
+  border-radius: 8px;
+  background-color: #f4f8fb;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pdf-profile__photo--empty {
+  background-image: linear-gradient(160deg, #e8f0f7, #f9fbfd);
+}
+
+.pdf-profile__photo--empty span {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #a9bccb;
+}
+
+.pdf-profile__info {
+  padding-top: 4px;
+}
+
+.pdf-profile__label {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #8ea5b6;
+}
+
+.pdf-profile__name {
+  margin: 4px 0 20px;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #072334;
+}
+
+.pdf-specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 22px;
+  margin: 0;
+}
+
+.pdf-specs__item {
+  padding-left: 11px;
+  border-left: 2px solid #297cc1;
+}
+
+.pdf-specs__item dt {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8ea5b6;
+}
+
+.pdf-specs__item dd {
+  margin: 3px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #072334;
+}
+
+/* ---- sections ---- */
+
+.pdf-section {
+  margin-bottom: 30px;
+}
+
+.pdf-section:last-child {
+  margin-bottom: 0;
+}
+
+.pdf-section__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 13px;
+}
+
+.pdf-section__head h3 {
+  margin: 0;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #044f80;
+  white-space: nowrap;
+}
+
+.pdf-section__rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background: #e4ecf3;
+}
+
+/* ---- technical indicators ---- */
+
+.pdf-tech {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.pdf-tech__col {
+  display: grid;
+  gap: 9px;
+}
+
+.pdf-tech__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 9px;
+  min-height: 68px;
+  padding: 10px 11px;
+  border: 1px solid #e4ecf3;
+  border-left: 3px solid #297cc1;
+  border-radius: 6px;
+  background: #fbfdfe;
+}
+
+.pdf-tech__label {
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #0d2c3f;
+}
+
+/* ---- grade chips ---- */
+
+.pdf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  padding: 3px 9px 4px;
+  border: 1px solid #dde7ef;
+  border-radius: 999px;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pdf-chip__dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+}
+
+.pdf-chip--empty {
+  color: #9db1c0;
+  border-color: #e4ecf3;
+  background: #ffffff;
+}
+
+/* ---- player-specific table ---- */
+
+.pdf-table__head,
+.pdf-table__row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) 104px 112px;
+  gap: 12px;
+  align-items: center;
+}
+
+.pdf-table--improve .pdf-table__head,
+.pdf-table--improve .pdf-table__row {
+  grid-template-columns: 22px minmax(0, 1fr) 112px;
+}
+
+.pdf-table--improve .pdf-table__cell--wide {
+  grid-column: auto;
+}
+
+.pdf-table__head {
+  padding-bottom: 9px;
+  border-bottom: 1px solid #dde7ef;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8ea5b6;
+}
+
+.pdf-table__row {
+  min-height: 38px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eff4f8;
+}
+
+.pdf-table__row:last-child {
+  border-bottom: none;
+}
+
+/* Flex cells keep chips and links on one optical line: an inline-block with
+   overflow hidden aligns its bottom edge to the baseline, not its text. */
+.pdf-table__cell {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.pdf-table__name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0d2c3f;
+}
+
+.pdf-table__name.is-empty {
+  font-weight: 400;
+  font-style: italic;
+  color: #9db1c0;
+}
+
+.pdf-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #eef4fa;
+  font-size: 9px;
+  font-weight: 700;
+  color: #044f80;
+}
+
+.pdf-link {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #9cc4e3;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #044f80;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pdf-muted {
+  font-size: 11px;
+  color: #9db1c0;
+}
+
+/* ---- need to improve ---- */
+
+.pdf-improve {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pdf-improve__row {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eff4f8;
+  font-size: 12px;
+}
+
+.pdf-improve__row:last-child {
+  border-bottom: none;
+}
+
+/* ---- footer band ---- */
+
+.pdf-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 46px 15px;
+  background: #072334;
+}
+
+.pdf-foot__slogan {
+  font-family: "Good Times", "Source Sans 3", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.pdf-foot__rights {
+  font-size: 8.5px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: #93aec3;
+}
